@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import Alert from "./components/Alert";
 
 function App() {
-    const [mode, setMode] = useState("dark"); // Whether dark mode is enabled or not
+    const [mode, setMode] = useState("light"); // Whether dark mode is enabled or not
     const [alert, setAlert] = useState(null);
 
     const showAlert = (message, type) => {
@@ -22,7 +22,7 @@ function App() {
         console.log("Mode changed to:-", mode);
         let myBox = document.getElementById('mybox');
         let body = document.body;
-        
+
         switch (col) {
             case 'light':
                 setMode('light');
@@ -33,30 +33,34 @@ function App() {
             
             case 'dark':
                 setMode('dark');
-                body.style = "background-color:black;color:white";
-                myBox.style = "background-color: black;color: white";
+                body.style = "background-color:#1a1f24;color:white";
+                myBox.style = "background-color: #1a1f24;color: white";
                 showAlert("Darkmode has been enabled!", "success");
                 break;
             
             case 'red':
+                setMode('red');
                 body.style = "background-color:red;color:white";
                 myBox.style = "background-color: red;color: white";
                 showAlert("Redmode has been enabled!", "success");
                 break;
 
             case 'green':
+                setMode('green')
                 body.style = "background-color:green;color:white";
                 myBox.style = "background-color: green;color: white";
                 showAlert("GreenMode has been enabled!", "success");
                 break;
 
             case 'blue':
+                setMode('blue')
                 body.style = "background-color:blue;color:white";
                 myBox.style = "background-color: blue;color: white";
                 showAlert("BlueMode has been enabled!", "success");
                 break;
 
             case 'purple':
+                setMode('purple')
                 body.style = "background-color:purple;color:white";
                 myBox.style = "background-color: purple;color: white";
                 showAlert("PurpleMode has been enabled!", "success");

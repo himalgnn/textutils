@@ -63,7 +63,7 @@ export default function TextForm(props) {
                         onChange={handleOnChange}
                         rows="8"
                         autoFocus
-                        style={{backgroundColor: props.mode==='light'?'white':'#1a1f24',color: props.mode==='light'?'black':'white' }}
+                        style={{color: props.mode==='light'?'black':'white' }}
                     ></textarea>
                 </div>
                 <button
