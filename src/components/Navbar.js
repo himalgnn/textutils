@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
     return (
         
         <nav className={`navbar navbar-expand-lg navbar-dark bg-dark`}>
             <div className="container-fluid">
-                <a className="navbar-brand" href="/">
+                <Link to='/' className="navbar-brand" href="/">
                     {props.title}
-                </a>
+                </Link>
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -27,18 +27,18 @@ export default function Navbar(props) {
                 >
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <a
+                            <Link to="/"
                                 className="nav-link active"
                                 aria-current="page"
                                 href="/"
                             >
                                 Home
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/">
+                            <Link to="about" className="nav-link" href="about">
                                 {props.aboutText}
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                     {/* <form className="d-flex" role="search">
@@ -56,20 +56,14 @@ export default function Navbar(props) {
                         </button>
                     </form> */}
                     <div className="palette">
-                    <span className="dot" onClick={()=>props.toggleMode('red')} style={{backgroundColor:'red',}}></span>
-                    <span className="dot" onClick={()=>props.toggleMode('green')} style={{backgroundColor:'green',}}></span>
-                    <span className="dot" onClick={()=>props.toggleMode('blue')} style={{backgroundColor:'blue',}}></span>
-                    <span className="dot" onClick={()=>props.toggleMode('purple')} style={{backgroundColor:'purple',}}></span>
-                    <span className="dot" onClick={()=>props.toggleMode('light')} style={{backgroundColor:'white',}}></span>
-                    <span className="dot" onClick={()=>props.toggleMode('dark')} style={{backgroundColor:'black',}}></span>
+                        <span className="dot" onClick={()=>props.toggleMode('#850000','white','Red')} style={{backgroundColor:'red'}}></span>
+                        <span className="dot" onClick={()=>props.toggleMode('#21500D','white','Green')} style={{backgroundColor:'green'}}></span>
+                        <span className="dot" onClick={()=>props.toggleMode('#00337C','white','Blue')} style={{backgroundColor:'blue'}}></span>
+                        <span className="dot" onClick={()=>props.toggleMode('#FF78F0','black','Pink')} style={{backgroundColor:'pink'}}></span>
+                        <span className="dot" onClick={()=>props.toggleMode('#1a1f24','white','Dark')} style={{backgroundColor:'black'}}></span>
+                        <span className="dot" onClick={()=>props.toggleMode('white','black', 'Light')} style={{backgroundColor:'white'}}></span>
+                    </div>
                 </div>
-{/* 
-                   <div className={`form-check form-switch text-${props.mode==='dark'?'light':'dark'}`}>
-  <input className="form-check-input" type="checkbox" onClick={()=>props.toggleMode('dark')} role="switch" id="flexSwitchCheckDefault"/>
-  <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Dark Mode</label>
-</div> */}
-                </div>
-                
             </div>
         </nav>
     );

@@ -1,12 +1,17 @@
 import "./App.css";
-// import About from "./components/About";
+import About from "./components/About";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 import React, { useState } from "react";
 import Alert from "./components/Alert";
-
+import ReactDOM from 'react-dom';
+import { Routes, Route } from "react-router-dom";
+  
 function App() {
-    const [mode, setMode] = useState("light"); // Whether dark mode is enabled or not
+    const [mode, setMode] = useState({
+        color: 'black',
+        backgroundColor: 'white'
+    }); // Whether dark mode is enabled or not
     const [alert, setAlert] = useState(null);
 
     const showAlert = (message, type) => {
@@ -18,57 +23,19 @@ function App() {
             setAlert(null);
         }, 1500);
     };
-    const toggleMode = (col) => {
-        console.log("Mode changed to:-", mode);
+    const toggleMode = (bgCol,textCol,btnColor) => {
         let myBox = document.getElementById('mybox');
         let body = document.body;
+        let style = `background-color:${bgCol};color:${textCol}`;
 
-        switch (col) {
-            case 'light':
-                setMode('light');
-                body.style = "background-color:white;color:black";
-                myBox.style = "background-color: white;color: black";
-                showAlert("Lightmode has been enabled!", "success");
-                break;
-            
-            case 'dark':
-                setMode('dark');
-                body.style = "background-color:#1a1f24;color:white";
-                myBox.style = "background-color: #1a1f24;color: white";
-                showAlert("Darkmode has been enabled!", "success");
-                break;
-            
-            case 'red':
-                setMode('red');
-                body.style = "background-color:red;color:white";
-                myBox.style = "background-color: red;color: white";
-                showAlert("Redmode has been enabled!", "success");
-                break;
-
-            case 'green':
-                setMode('green')
-                body.style = "background-color:green;color:white";
-                myBox.style = "background-color: green;color: white";
-                showAlert("GreenMode has been enabled!", "success");
-                break;
-
-            case 'blue':
-                setMode('blue')
-                body.style = "background-color:blue;color:white";
-                myBox.style = "background-color: blue;color: white";
-                showAlert("BlueMode has been enabled!", "success");
-                break;
-
-            case 'purple':
-                setMode('purple')
-                body.style = "background-color:purple;color:white";
-                myBox.style = "background-color: purple;color: white";
-                showAlert("PurpleMode has been enabled!", "success");
-                break;
-
-            default:
-                break;
-        }
+        setMode({
+            color: textCol,
+            bgCol: bgCol,
+            btnColor: btnColor
+        });
+        body.style = style;
+        myBox.style = style;
+        showAlert(`${btnColor}Mode has been enabled!`, "success");
     };
 
     return (
@@ -76,12 +43,12 @@ function App() {
             <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
             <Alert alert={alert} />
             <div className="container my-3">
-                <TextForm
-                    showAlert={showAlert}
-                    heading="Enter the text to analyze"
-                    mode={mode}
-                />
-                {/* <About/> */}
+
+                <Routes>
+                    <Route path="/" element={  <TextForm showAlert={showAlert} heading="Enter the text to analyze" mode={mode}/> } />
+                    <Route path="about" element={ <About mode={mode}/> } />
+                </Routes>
+
             </div>
         </>
     );

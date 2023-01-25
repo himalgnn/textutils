@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 export default function TextForm(props) {
+    document.title='TextUtils - Home';
+
     const handleFocus = () =>{
         document.getElementById('mybox').focus()
     };
@@ -41,9 +43,30 @@ export default function TextForm(props) {
         handleFocus()
         props.showAlert("Removed extra spaces!", "success")
     }
-    const [myStyle, setmyStyle] = useState(null)
 
-    
+    let btnColor ='primary'
+    switch (props.mode.btnColor) {
+        case 'Red':
+            btnColor='danger'
+            break;
+        case 'Green':
+            btnColor = 'success'
+            break;
+        case 'Blue':
+           btnColor = 'primary'
+            break;
+        case 'Pink':
+           btnColor = 'warning'
+           break;
+        default:
+            break;
+    }
+
+    let myStyle = {
+        color: props.mode.color,
+        backgroundColor: props.mode.bgCol
+    }
+
     const handleOnChange = (event) => {
         // console.log("Onchange");
         setText(event.target.value);
@@ -53,7 +76,7 @@ export default function TextForm(props) {
     // setText ("new text") // Correct way to change the state
     return (
         <>
-            <div className="container" style={{color: props.mode==='light'?'black':'white'}}>
+            <div className="container" style={myStyle}>
                 <h1>{props.heading}</h1>
                 <div className="mb-3">
                     <textarea
@@ -63,29 +86,29 @@ export default function TextForm(props) {
                         onChange={handleOnChange}
                         rows="8"
                         autoFocus
-                        style={{color: props.mode==='light'?'black':'white' }}
+                        style={myStyle}
                     ></textarea>
                 </div>
                 <button
-                    className="btn btn-primary mx-1"
+                    className={`btn btn-${btnColor} mx-1`}
                     onClick={handleUpClick}
                 >
                     Convert to Uppercase
                 </button>
-                <button className="btn btn-primary mx-1" onClick={handleLowClick}>
+                <button className={`btn btn-${btnColor} mx-1`} onClick={handleLowClick}>
                     Convert to Lowercase
                 </button>
-                <button className="btn btn-primary mx-1" onClick={handleCopyClick}>
+                <button className={`btn btn-${btnColor} mx-1`} onClick={handleCopyClick}>
                     Copy to Clipboard
                 </button>
-                <button className="btn btn-primary mx-1" onClick={handleExtraSpaces}>
+                <button className={`btn btn-${btnColor} mx-1`} onClick={handleExtraSpaces}>
                     Remove Extraspaces
                 </button>
-                <button className="btn btn-primary mx-1" onClick={handleClearClick}>
+                <button className={`btn btn-${btnColor} mx-1`} onClick={handleClearClick}>
                     Clear
                 </button>
             </div>
-            <div className="container my-3" style={{color: props.mode==='light'?'black':'white'}}>
+            <div className="container my-3" style={myStyle}>
                 <h2>Your text summary</h2>
                 <p>{text.split(" ").length} words and {text.length} characters</p>
                 <p>{0.008 * text.split(" ").length} Minutes read</p>
