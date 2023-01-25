@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/himalgnn/textutils-react/static/css/main.4c725eed.css",
+    "main.js": "/himalgnn/textutils-react/static/js/main.ce83ca93.js",
+    "static/js/787.719ec76d.chunk.js": "/himalgnn/textutils-react/static/js/787.719ec76d.chunk.js",
+    "index.html": "/himalgnn/textutils-react/index.html",
+    "main.4c725eed.css.map": "/himalgnn/textutils-react/static/css/main.4c725eed.css.map",
+    "main.ce83ca93.js.map": "/himalgnn/textutils-react/static/js/main.ce83ca93.js.map",
+    "787.719ec76d.chunk.js.map": "/himalgnn/textutils-react/static/js/787.719ec76d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4c725eed.css",
+    "static/js/main.ce83ca93.js"
+  ]
+}
